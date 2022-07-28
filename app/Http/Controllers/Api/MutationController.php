@@ -21,7 +21,7 @@ class MutationController extends Controller
             'type' => 'nullable|string',
             'amount' => 'nullable|numeric',
             'from_date' => 'nullable|date',
-            'to_date' => 'nullable|date|date|after:from_date',
+            'to_date' => 'nullable|date|date|after_or_equal:from_date',
         ]);
 
         $mutations = Mutation::where('user_id', $request->user()->id)
@@ -30,6 +30,9 @@ class MutationController extends Controller
             })
             ->when(!blank($request->type), function ($query) use ($request) {
                 return $query->where('type', $request->type);
+            })
+            ->when(!blank($request->amount), function ($query) use ($request) {
+                return $query->where('amount', round($request->amount, 2));
             })
             ->when(!blank($request->from_date), function ($query) use ($request) {
                 $timestamp = Carbon::parse($request->from_date)->timestamp;

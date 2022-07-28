@@ -8,7 +8,6 @@
         <table class="table table-compact w-full text-left">
             <thead>
             <tr>
-                <th class="w-1"></th>
                 <th class="w-1">Nama Rekening</th>
                 <th>Nomor Rekening</th>
                 <th class="w-1">Paket Layanan</th>
@@ -19,7 +18,6 @@
             <tbody>
             @foreach($banks as $bank)
                 <tr>
-                    <th class="w-1"></th>
                     <td class="w-1">{{ $bank->account_name }}</td>
                     <td class="">{{ $bank->account_number }}</td>
                     <td class="w-1">{{ $bank->package->name }}</td>
@@ -27,6 +25,10 @@
                     <td class="w-1">
                         <input wire:click="updateStatus('{{ $bank->id }}')" type="checkbox" class="toggle" {{ $bank->is_active ? 'checked' : '' }} />
                     </td>
+                </tr>
+                <tr>
+                    <td class="w-1">Bank ID:</td>
+                    <td colspan="5">{{ $bank->id }}</td>
                 </tr>
             @endforeach
             </tbody>
