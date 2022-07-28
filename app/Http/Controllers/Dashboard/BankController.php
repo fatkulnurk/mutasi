@@ -15,7 +15,6 @@ class BankController extends Controller
      */
     public function index()
     {
-        return  Bank::get();
         return view('dashboard.banks.index');
     }
 
