@@ -21,7 +21,8 @@ class Manage extends Component
     public function render()
     {
         $bankService = (new BankService());
-        $mutations = Mutation::where('user_id', auth()->user()->id)
+        $mutations = Mutation::with('bank.service')
+            ->where('user_id', auth()->user()->id)
             ->when(!blank($this->selectedBank), function ($query) {
                 return $query->where('bank_id', $this->selectedBank);
             })

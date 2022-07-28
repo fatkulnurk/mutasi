@@ -39,7 +39,7 @@
         <table class="table table-compact w-full text-left">
             <thead>
             <tr>
-                <th class="w-1"></th>
+                <th class="w-1">Bank</th>
                 <th class="w-1">Jumlah</th>
                 <th>Deskripsi</th>
                 <th class="w-1">Tipe</th>
@@ -49,7 +49,11 @@
             <tbody>
             @foreach($mutations as $mutation)
                 <tr>
-                    <th class="w-1"></th>
+                    <td class="w-1">
+                        {{ $mutation->bank->account_name ?? '' }} / {{$mutation->bank->account_number ?? ''}}
+                        <br>
+                        ({{ $mutation->bank->service->name ?? '' }})
+                    </td>
                     <td class="w-1">{{ $mutation->amount }}</td>
                     <td>{!! $mutation->description !!}</td>
                     <td class="w-1">{{ $mutation->type }}</td>

@@ -17,4 +17,9 @@ class Mutation extends Model
         'amount' => 'decimal:2',
         'is_manual' => 'boolean',
     ];
+
+    public function bank()
+    {
+        return $this->belongsTo(Bank::class);
+    }
 }
