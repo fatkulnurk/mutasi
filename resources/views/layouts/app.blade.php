@@ -47,14 +47,14 @@
                     </label>
                     <ul tabindex="0"
                         class="menu menu-compact dropdown-content mt-3 p-1 shadow bg-base-100 rounded-box w-52">
-                        <li>
+                        {{--<li>
                             <a>
                                 Profile
                             </a>
                         </li>
                         <li><a>Ganti Password</a></li>
                         <hr class="my-1">
-                        <li>
+                        --}}<li>
                             <form action="{{ route('logout') }}" method="POST">
                                 @csrf
                                 <button class="btn btn-block btn-primary btn-sm">Logout</button>
@@ -134,17 +134,22 @@
                 </li>
                 <li>
                     <a href="{{ route('dashboard.banks.index') }}">
-                        <i class="fa-solid fa-money-bills w-5 h-5"></i> Kelola Bank
+                        <i class="fa-solid fa-building-columns w-5 h-5"></i> Kelola Bank
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('dashboard.mutations.index') }}">
-                        <i class="fa-solid fa-money-bills w-5 h-5"></i> Kelola Mutasi
+                        <i class="fa-solid fa-clock-rotate-left w-5 h-5"></i> Kelola Mutasi
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('dashboard.apis.index') }}">
-                        <i class="fa-solid fa-money-bills w-5 h-5"></i> Pengaturan Api
+                        <i class="fa-solid fa-key w-5 h-5"></i> Pengaturan Api
+                    </a>
+                </li>
+                <li>
+                    <a href="https://documenter.getpostman.com/view/5039076/UzXPwc5M">
+                        <i class="fa-solid fa-fire w-5 h-5"></i> Dokumantasi Api
                     </a>
                 </li>
                 <li>

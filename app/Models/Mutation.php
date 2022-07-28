@@ -12,4 +12,9 @@ class Mutation extends Model
 {
     use HasFactory, UuidTrait, UnixTimestamps, SoftDeletes;
     protected $guarded = ['created_at', 'updated_at', 'deleted_at'];
+    protected $hidden = ['date', 'deleted_at'];
+    protected $casts = [
+        'amount' => 'decimal:2',
+        'is_manual' => 'boolean',
+    ];
 }

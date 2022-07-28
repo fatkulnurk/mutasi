@@ -7,17 +7,17 @@ use App\Models\Mutation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 
-class MutationsController extends Controller
+class MutationController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index(Request $request)
+    public function __invoke(Request $request)
     {
         $request->validate([
-            'bank_id' => 'nullable|string|exist:banks,id',
+            'bank_id' => 'nullable|string|exists:banks,id',
             'type' => 'nullable|string',
             'amount' => 'nullable|numeric',
             'from_date' => 'nullable|date',
@@ -45,71 +45,5 @@ class MutationsController extends Controller
             ->paginate(10);
 
         return response()->json($mutations);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

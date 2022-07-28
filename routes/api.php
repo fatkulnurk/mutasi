@@ -21,5 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::group([
     'middleware' => 'auth:sanctum',
 ], function () {
-    Route::apiResource('/mutations', \App\Http\Controllers\Api\MutationsController::class);
+    Route::get('/mutations', \App\Http\Controllers\Api\MutationController::class);
 });
