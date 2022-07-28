@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\Bank;
 use Illuminate\Http\Request;
 
 class BankController extends Controller
@@ -14,6 +15,7 @@ class BankController extends Controller
      */
     public function index()
     {
+        return  Bank::get();
         return view('dashboard.banks.index');
     }
 

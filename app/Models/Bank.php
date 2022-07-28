@@ -13,8 +13,8 @@ class Bank extends Model
     use HasFactory, UuidTrait, UnixTimestamps, SoftDeletes;
     protected $guarded = ['created_at', 'updated_at', 'deleted_at'];
     protected $casts = [
-        'credential' => 'json',
-        'authentication' => 'json',
+        'credential' => 'encrypted:array',
+        'authentication' => 'encrypted:array',
     ];
 
     public function user()
