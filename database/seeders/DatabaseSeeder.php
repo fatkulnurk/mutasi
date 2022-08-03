@@ -22,7 +22,8 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory()->create([
             'name' => 'Admin Ganteng',
             'email' => 'admin@dibumi.com',
-            'password' => Hash::make('lang1tgelap^_^')
+            'password' => Hash::make('lang1tgelap^_^'),
+            'type' => '0',
         ]);
 
         $services = [

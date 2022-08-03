@@ -33,6 +33,14 @@ Route::group([
    Route::resource('/banks', \App\Http\Controllers\Dashboard\BankController::class);
    Route::resource('/mutations', \App\Http\Controllers\Dashboard\MutationController::class);
    Route::resource('/apis', \App\Http\Controllers\Dashboard\ApiController::class);
+
+   Route::group([
+       'prefix' => 'admin',
+       'as' => 'admin.',
+       'middleware' => 'isAdmin'
+   ], function () {
+       Route::resource('/users', \App\Http\Controllers\Dashboard\Admin\UserController::class);
+   });
 });
 
 require __DIR__.'/auth.php';

@@ -22,7 +22,20 @@
                     <td class="">{{ $token->name }}</td>
                     <td class="">{{ $token->last_used_at }}</td>
                     <td class="">{{ $token->created_at }}</td>
-                    <td class="w-1"></td>
+                    <td class="w-1">
+                        <div class="flex inline gap-2 h-full">
+{{--                            <a href="#"--}}
+{{--                               class="btn btn-sm btn-circle"><i class="fa-solid fa-pen-to-square"></i></a>--}}
+                            <form action="{{ route('dashboard.apis.destroy', $token->id) }}" method="POST"
+                                  onsubmit="return showAlertDelete(this)">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-sm btn-circle btn-error">
+                                    <i class="fa-solid fa-trash text-white"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
                 </tr>
             @endforeach
             </tbody>

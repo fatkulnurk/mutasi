@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\PersonalAccessToken;
 use Illuminate\Http\Request;
 
 class ApiController extends Controller
@@ -82,10 +83,12 @@ class ApiController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
     {
-        //
+        PersonalAccessToken::where('id', $id)->delete();
+
+        return redirect()->route('dashboard.apis.index')->with('success', 'Berhasil menghapus api.');
     }
 }

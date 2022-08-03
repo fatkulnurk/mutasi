@@ -10,6 +10,7 @@
                            type="text"
                            placeholder="Masukan Nama Api"
                            class="input input-bordered w-full"/>
+                    @error('name')<p class="py-3 text-error">{{ $message }}</p>@enderror
                 </div>
                 <div class="form-control w-full">
                     <label class="label">
@@ -19,6 +20,7 @@
                            type="password"
                            placeholder="password"
                            class="input input-bordered w-full"/>
+                    @error('password')<p class="py-3 text-error">{{ $message }}</p>@enderror
                 </div>
 
                 <div class="form-control w-full my-5">

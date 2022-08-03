@@ -9,6 +9,7 @@ use Livewire\WithPagination;
 class Manage extends Component
 {
     use WithPagination;
+    public $selectedApi = null;
 
     public function render()
     {
