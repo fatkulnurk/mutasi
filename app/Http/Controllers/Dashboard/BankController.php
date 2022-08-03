@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\Bank;
+use App\Models\Mutation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BankController extends Controller
 {
@@ -79,8 +81,16 @@ class BankController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
-        //
+        DB::transaction(function () use ($id, $request) {
+            $bank = Bank::where('id', $id)->where('user_id', $request->user()->id)->delete();
+
+            if ($bank) {
+                Mutation::where('bank_id', $id)->where('user_id', $request->user()->id)->delete();
+            }
+        });
+
+        return redirect()->route('dashboard.banks.index')->with('success', 'Berhasil menghapus data.');
     }
 }
