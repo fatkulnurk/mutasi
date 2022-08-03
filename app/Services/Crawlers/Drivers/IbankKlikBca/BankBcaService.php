@@ -90,20 +90,9 @@ class BankBcaService implements DriverInterface
             ];
         }
 
-        Log::error('Dump Data', [
-            'credential' => $credential,
-            'transactions' => $transactions,
-            'upserts' => $upserts
-        ]);
-
         try {
             Mutation::upsert($upserts, ['description', 'amount', 'type', 'hash'], ['hash']);
         } catch (\Exception $e) {
-            Log::error($e->getMessage(), [
-                'credential' => $credential,
-                'transactions' => $transactions,
-                'upserts' => $upserts
-            ]);
         }
     }
 

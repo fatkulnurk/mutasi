@@ -84,10 +84,10 @@ class BankController extends Controller
     public function destroy($id, Request $request)
     {
         DB::transaction(function () use ($id, $request) {
-            $bank = Bank::where('id', $id)->where('user_id', $request->user()->id)->delete();
+            $bank = Bank::where('id', $id)->where('user_id', $request->user()->id)->forceDelete();
 
             if ($bank) {
-                Mutation::where('bank_id', $id)->where('user_id', $request->user()->id)->delete();
+                Mutation::where('bank_id', $id)->where('user_id', $request->user()->id)->forceDelete();
             }
         });
 
