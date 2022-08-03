@@ -62,11 +62,6 @@ class BankBcaService implements DriverInterface
             $credential['password']
         );
 
-        Log::error('Error', [
-            'credential' => $credential,
-            'transactions' => $transactions
-        ]);
-
         $upserts = [];
         foreach ($transactions as $item) {
             $itemArray = collect($item)->toArray();
@@ -95,7 +90,21 @@ class BankBcaService implements DriverInterface
             ];
         }
 
-        Mutation::upsert($upserts, ['description', 'amount', 'type', 'hash'], ['hash']);
+        Log::error('Dump Data', [
+            'credential' => $credential,
+            'transactions' => $transactions,
+            'upserts' => $upserts
+        ]);
+
+        try {
+            Mutation::upsert($upserts, ['description', 'amount', 'type', 'hash'], ['hash']);
+        } catch (\Exception $e) {
+            Log::error($e->getMessage(), [
+                'credential' => $credential,
+                'transactions' => $transactions,
+                'upserts' => $upserts
+            ]);
+        }
     }
 
     public function requestOTP(Model|User $user, Model|Bank $bank, array $options = [])
