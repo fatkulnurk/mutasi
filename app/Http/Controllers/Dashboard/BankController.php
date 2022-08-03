@@ -84,11 +84,8 @@ class BankController extends Controller
     public function destroy($id, Request $request)
     {
         DB::transaction(function () use ($id, $request) {
-            $bank = Bank::where('id', $id)->where('user_id', $request->user()->id)->forceDelete();
-
-            if ($bank) {
-                Mutation::where('bank_id', $id)->where('user_id', $request->user()->id)->forceDelete();
-            }
+            Mutation::where('bank_id', $id)->where('user_id', $request->user()->id)->forceDelete();
+            Bank::where('id', $id)->where('user_id', $request->user()->id)->forceDelete();
         });
 
         return redirect()->route('dashboard.banks.index')->with('success', 'Berhasil menghapus data.');
