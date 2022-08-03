@@ -8,6 +8,7 @@ use App\Models\Service;
 use App\Models\User;
 use App\Services\Crawlers\Contracts\DriverInterface;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class BankBcaService implements DriverInterface
@@ -60,6 +61,11 @@ class BankBcaService implements DriverInterface
             $credential['username'],
             $credential['password']
         );
+
+        Log::error('Error', [
+            'credential' => $credential,
+            'transactions' => $transactions
+        ]);
 
         $upserts = [];
         foreach ($transactions as $item) {
