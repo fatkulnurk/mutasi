@@ -26,23 +26,23 @@
                     <td class="w-1">
                         <input wire:click="updateStatus('{{ $bank->id }}')" type="checkbox" class="toggle" {{ $bank->is_active ? 'checked' : '' }} />
                     </td>
+                    <td class="w-1">
+                        <div class="flex inline gap-2 h-full">
+                            <form action="{{ route('dashboard.banks.destroy', $bank->id) }}" method="POST"
+                                  onsubmit="return showAlertDelete(this)">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-sm btn-circle btn-error">
+                                    <i class="fa-solid fa-trash text-white"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
                 </tr>
                 <tr>
                     <td class="w-1">Bank ID:</td>
-                    <td colspan="5">{{ $bank->id }}</td>
+                    <td colspan="6">{{ $bank->id }}</td>
                 </tr>
-                <td class="w-1">
-                    <div class="flex inline gap-2 h-full">
-                        <form action="{{ route('dashboard.banks.destroy', $bank->id) }}" method="POST"
-                              onsubmit="return showAlertDelete(this)">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-sm btn-circle btn-error">
-                                <i class="fa-solid fa-trash text-white"></i>
-                            </button>
-                        </form>
-                    </div>
-                </td>
             @endforeach
             </tbody>
         </table>
